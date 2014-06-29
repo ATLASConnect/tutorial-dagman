@@ -1,4 +1,4 @@
-This tutorial describes how to leverage DagMAN to combine several steps in in an analysis into one script. The example includes running over multiple ROOT files in separate jobs, retrying failed jobs and automatically merging the results. For an introductory tutorial to DagMAN, refer to the official documentation.
+This tutorial describes how to leverage [DagMAN](http://research.cs.wisc.edu/htcondor/manual/v7.8/2_10DAGMan_Applications.html) to combine several steps in in an analysis into one script. The example includes running over multiple ROOT files in separate jobs, retrying failed jobs and automatically merging the results. For an introductory tutorial to DagMAN, refer to the [official documentation](http://research.cs.wisc.edu/htcondor/tutorials/intl-grid-school-3/simple_dag.html).
 
 The final code can be obtained from Git.
 ```
@@ -106,7 +106,7 @@ rm output.root
 
 The ROOT macro, *plot.C*, just does the plotting using the following code. Notice that it checks to make sure that the input file was opened correctly. Upon detecting the error, it returns value of `-1`. If the file was opened correctly, it returns `0`.
 
-```
+```C++
 #include <TFile.h>
 #include <TH1F.h>
 #include <TTree.h>
@@ -183,4 +183,14 @@ source ${ATLAS_LOCAL_ROOT_BASE}/user/atlasLocalSetup.sh
 localSetupROOT
 
 hadd -f output.root /home/${USER}/faxbox/dagman_tutorial/*.root
+```
+
+The DagMAN job can then be executed using the condor_submit_dag script.
+```
+condor_submit_dag dagman_tutorial.dag
+```
+
+For monitoring, one can add the -dag option to condor_q. It formats the output in a DagMAN friendly way.
+```
+watch -n 1 'condor_q -dag ${USER}'
 ```
