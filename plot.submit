@@ -1,11 +1,11 @@
 universe = vanilla
 executable = plot.sh
-output = logs/log.$(out)-$(Cluster).$(Process).out
-error = logs/log.$(out)-$(Cluster).$(Process).err
-log = logs/plot.log
+output = log.$(out)-$(Cluster).$(Process).out
+error = log.$(out)-$(Cluster).$(Process).err
+log = plot.log
 when_to_transfer_output = ON_EXIT
 should_transfer_files = YES
 transfer_input_files = plot.C
 +ProjectName="atlas-org-uchicago"
-arguments = $(out) $(in)
+arguments = $ENV(USER) $(out) $(in)
 queue

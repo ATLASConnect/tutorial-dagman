@@ -4,8 +4,9 @@ uname -a
 
 export HOME=${PWD}
 
-OUTPUT=${1}
-INPUT=${2}
+THEUSER=${1}
+OUTPUT=${2}
+INPUT=${3}
 
 echo "Setup ROOT"
 
@@ -27,6 +28,6 @@ if [ "x${?}x" != "x0x" ]; then
     exit 1
 fi
 
-xrdcp -f output.root root://faxbox.usatlas.org://user/kkrizka/dagman_tutorial/output.${OUTPUT}.root
+xrdcp -f output.root root://faxbox.usatlas.org://user/${THEUSER}/dagman_tutorial/output.${OUTPUT}.root
 
 rm output.root

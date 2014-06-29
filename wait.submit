@@ -1,7 +1,6 @@
 universe = vanilla
-#executable = plot.sh
-output = logs/$(Cluster).$(Process).out
-error = logs/$(Cluster).$(Process).err
-log = logs/wait.log
+output = wait-$(Cluster).$(Process).out
+error = wait-$(Cluster).$(Process).err
+log = wait.log
 +ProjectName="atlas-org-uchicago"
 queue
