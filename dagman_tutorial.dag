@@ -1,0 +1,16 @@
+JOB PLOT1 plot.submit
+JOB PLOT2 plot.submit
+JOB PLOT3 plot.submit
+
+VARS PLOT1 in="root://faxbox.usatlas.org://user/jolsson/rpv_GtoChi/datasets/SUSYBOOST/mc12_8TeV.183903.Herwigpp_UEEE3_CTEQ6L1_RPV_UDD_GluinoToChi_10q_M800_175.merge.NTUP_SUSYBOOST.e2406_s1581_s1586_r3658_r3549_p1364_tid01371979_00/NTUP_SUSYBOOST.01371979._000001.root.1" out="1"
+VARS PLOT2 in="root://faxbox.usatlas.org://user/jolsson/rpv_GtoChi/datasets/SUSYBOOST/mc12_8TeV.183903.Herwigpp_UEEE3_CTEQ6L1_RPV_UDD_GluinoToChi_10q_M800_175.merge.NTUP_SUSYBOOST.e2406_s1581_s1586_r3658_r3549_p1364_tid01371979_00/NTUP_SUSYBOOST.01371979._000002.root.1" out="2"
+VARS PLOT3 in="root://faxbox.usatlas.org://user/jolsson/rpv_GtoChi/datasets/SUSYBOOST/mc12_8TeV.183903.Herwigpp_UEEE3_CTEQ6L1_RPV_UDD_GluinoToChi_10q_M800_175.merge.NTUP_SUSYBOOST.e2406_s1581_s1586_r3658_r3549_p1364_tid01371979_00/NTUP_SUSYBOOST.01371979._000003.root.1" out="3"
+
+RETRY PLOT1 100
+RETRY PLOT2 100
+RETRY PLOT3 100
+
+JOB WAIT wait.submit NOOP
+SCRIPT POST WAIT merge.sh
+
+PARENT PLOT1 PLOT2 PLOT3 CHILD WAIT
